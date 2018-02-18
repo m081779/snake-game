@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="textWrapper">
+    <h1>Snake Game!</h1>
+    <hr>
+    <div class="instructions">
+      <h3>Instructions:</h3>
+      <p>This is the classic snake game.  Use the arrow keys to direct your snake, try to eat the apple, but don't eat your tail or you lose!  Speed increases with every apple you eat.  How long can you last???</p>
+    </div>
+  </div>
+  <div class="gameBox">
+    <h4 id="currentScoreTitle">Current Score: <span id="currentScore"></span></h4>
+    <h4 id="highestScoreTitle">Highest Score: <span id="highScore"></span></h4>
+    <canvas id="snakeGame" height="400" width="400"></canvas>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
