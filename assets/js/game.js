@@ -7,7 +7,7 @@ let snakePositions = []; //all positions of snake stored here
 let tail = 5;//initial length of snake
 let xv = 1;//initial x velocity
 let yv = 0;//initial y velocity
-let playerX = 10 //initial player x coordinate
+let playerX = 10; //initial player x coordinate
 let playerY = 10; //initial player y coordinate
 let gridSize = 20; //size of grid squares
 let tileCount = 20; //number of tiles in grid
@@ -19,16 +19,16 @@ let currentScore = tail - 5;
 
 
 //function to initialize the start state of the game
-function initialize() {  
+function initialize() {
   //creating the start button
   high.innerHTML = highScore;
   current.innerHTML = currentScore;
   c.font = "30px Arial";
   c.fillStyle = "white";
   c.textAlign = "center";
-  c.fillText("Start Game", snakeCanvas.width/2, snakeCanvas.height/2); 
+  c.fillText("Start Game", snakeCanvas.width/2, snakeCanvas.height/2);
   //start button click event
-  snakeCanvas.addEventListener('click', startGame)
+  snakeCanvas.addEventListener('click', startGame);
 }
 
 //main game function, called recursively by setInterval
@@ -36,11 +36,11 @@ function game() {
 
   //clears the canvas every time function is run
   c.fillStyle = "black";
-  c.fillRect(0,0, snakeCanvas.width, snakeCanvas.height)
+  c.fillRect(0,0, snakeCanvas.width, snakeCanvas.height);
 
   //adds key press event to listen for arrow keys
-  document.addEventListener('keydown', keyPress)
-  snakeCanvas.removeEventListener('click', startGame)
+  document.addEventListener('keydown', keyPress);
+  snakeCanvas.removeEventListener('click', startGame);
 
   //changes direction of snake according to changes in xv and xy
   playerX += xv;
@@ -59,14 +59,14 @@ function game() {
   if (playerY > tileCount - 1){
     playerY = 0;
   }
-  
+
   //code to draw the snake based on the length of tail
   c.fillStyle = "limegreen";
   for (let i = 0; i < snakePositions.length; i++){
 
     //code checks each stored position of the snake to check for touches.  If touch occurs, initial states are restored
     c.fillRect(snakePositions[i].x * gridSize, snakePositions[i].y * gridSize, gridSize-2, gridSize-2);
-    if (snakePositions[i].x == playerX && snakePositions[i].y === playerY) {
+    if (snakePositions[i].x === playerX && snakePositions[i].y === playerY) {
       tail = 5;
       difficulty = 5;
       currentScore = 0;
@@ -85,7 +85,7 @@ function game() {
   if (appleX === playerX && appleY === playerY) {
     //if hit on apple occurs, the tail grows, the game speeds up, and the apple position randomizes
     tail++;
-    difficulty++
+    difficulty++;
     appleX = ~~(Math.random() * tileCount);
     appleY = ~~(Math.random() * tileCount);
     //check to make sure that apple isn't drawn on top of snake
@@ -97,7 +97,7 @@ function game() {
     }
 
     //score increments and is written to screen
-    currentScore++
+    currentScore++;
     current.innerHTML = currentScore;
 
     //highscore is replaced by current score if score is beaten
@@ -105,12 +105,12 @@ function game() {
       highScore = currentScore;
       high.innerHTML = highScore;
     }
-    
+
   }
 
   //code for drawing the apple
   c.fillStyle = 'red';
-  c.fillRect(appleX * gridSize, appleY * gridSize, gridSize-2, gridSize-2)
+  c.fillRect(appleX * gridSize, appleY * gridSize, gridSize-2, gridSize-2);
 
   //clearing the interval and resetting it allows for speed changes based on difficulty divisor
   clearInterval(gameInterval);
